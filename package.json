@@ -1,0 +1,26 @@
+{
+  "name": "azure-devops-deploy-progress",
+  "version": "1.0.0",
+  "description": "Track the deployment progress of PRs and feature flags",
+  "main": "lib/main.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hashtagchris/azure-devops-deploy-progress.git"
+  },
+  "author": "hashtagchris",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hashtagchris/azure-devops-deploy-progress/issues"
+  },
+  "homepage": "https://github.com/hashtagchris/azure-devops-deploy-progress#readme",
+  "dependencies": {
+    "azure-devops-node-api": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^12.11.1",
+    "typescript": "^3.6.4"
+  }
+}
