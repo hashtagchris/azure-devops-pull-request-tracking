@@ -197,28 +197,3 @@ class PullRequestTracker {
     return minValue;
   }
 }
-
-(async function main() {
-  // your collection url
-  const orgUrl = "https://dev.azure.com/mseng";
-  const project = "AzureDevOps";
-  const releaseDefinitionId = 3358;
-
-  require("dotenv").config();
-
-  if (!process.env.AZURE_PERSONAL_ACCESS_TOKEN) {
-    throw "AZURE_PERSONAL_ACCESS_TOKEN is undefined.";
-  }
-  let token: string = process.env.AZURE_PERSONAL_ACCESS_TOKEN;
-
-  const tracker = new PullRequestTracker(orgUrl, project, process.env.AZURE_PERSONAL_ACCESS_TOKEN, releaseDefinitionId);
-
-  console.log(await tracker.getDeployInfos([494919]));
-  console.log();
-
-  console.log(await tracker.getDeployInfos([510903]));
-  console.log();
-
-  console.log(await tracker.getDeployInfos([513131, 513094]));
-  console.log();
-})();
