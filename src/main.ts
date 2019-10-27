@@ -30,13 +30,13 @@ export interface pullRequestDeployInfo {
   deployedEnvironments?: environmentDictionary
 }
 
-class PullRequestTracker {
+export class PullRequestTracker {
   project: string;
   releaseDefinitionId: number;
   authHandler: IRequestHandler;
   connection: azdev.WebApi;
 
-  constructor(orgUrl: string, project: string, personalAccessToken: string, releaseDefinitionId: number) {
+  constructor(orgUrl: string, personalAccessToken: string, project: string, releaseDefinitionId: number) {
     this.project = project;
     this.releaseDefinitionId = releaseDefinitionId;
     this.authHandler = azdev.getPersonalAccessTokenHandler(personalAccessToken);

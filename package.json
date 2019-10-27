@@ -1,6 +1,6 @@
 {
   "name": "@hashtagchris/azure-devops-pull-request-tracking",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Track the deployment progress of PRs and feature flags",
   "main": "lib/main.js",
   "scripts": {
