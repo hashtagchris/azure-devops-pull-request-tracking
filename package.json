@@ -1,14 +1,17 @@
 {
-  "name": "azure-devops-deploy-progress",
+  "name": "@hashtagchris/azure-devops-pull-request-tracking",
   "version": "1.0.0",
   "description": "Track the deployment progress of PRs and feature flags",
   "main": "lib/main.js",
   "scripts": {
     "build": "tsc"
   },
+  "publishConfig": {
+    "registry":"https://npm.pkg.github.com/"
+  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hashtagchris/azure-devops-deploy-progress.git"
+    "url": "git+https://github.com/hashtagchris/azure-devops-pull-request-tracking.git"
   },
   "author": "hashtagchris",
   "license": "ISC",
