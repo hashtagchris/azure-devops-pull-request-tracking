@@ -3,6 +3,7 @@
   "version": "1.0.2",
   "description": "Track the deployment progress of PRs and feature flags",
   "main": "lib/main.js",
+  "types": "lib/main.d.ts",
   "scripts": {
     "build": "tsc"
   },
