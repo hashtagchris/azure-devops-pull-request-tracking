@@ -35,12 +35,21 @@ export class PullRequestTracker {
   releaseDefinitionId: number;
   authHandler: IRequestHandler;
   connection: azdev.WebApi;
+  environmentsToIgnore: string[];
 
-  constructor(orgUrl: string, personalAccessToken: string, project: string, releaseDefinitionId: number) {
+  constructor(orgUrl: string, personalAccessToken: string, project: string, releaseDefinitionId: number, environmentsToIgnore: string[]) {
     this.project = project;
     this.releaseDefinitionId = releaseDefinitionId;
     this.authHandler = azdev.getPersonalAccessTokenHandler(personalAccessToken);
     this.connection = new azdev.WebApi(orgUrl, this.authHandler);
+    this.environmentsToIgnore = environmentsToIgnore;
+  }
+
+  async getEnvironmentNames() {
+    const rm: ra.IReleaseApi = await this.connection.getReleaseApi();
+
+    const environments = await this.getEnvironments(rm);
+    return environments.map(env => env.name!);
   }
 
   async getDeployInfos(pullRequestIds: number[]) {
@@ -143,14 +152,11 @@ export class PullRequestTracker {
     if (!definition.environments) {
       throw "Release definition doesn't include environments"
     }
-    return definition.environments.filter(this.environmentNameFilter);
+    return definition.environments.filter(env => this.environmentNameFilter(env));
   }
 
   private environmentNameFilter(environment: ReleaseEnvironment | ReleaseDefinitionEnvironment) {
-    return environment.name !== "Single Scale Unit";
-    // const result = environment.name != "Single Scale Unit";
-    // console.log(`${environment.name}: ${result}`);
-    // return result;
+    return !this.environmentsToIgnore.includes(environment.name!);
   }
 
   private environmentStatusFilter(environment: ReleaseEnvironment) {

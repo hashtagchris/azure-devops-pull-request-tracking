@@ -25,7 +25,9 @@ export declare class PullRequestTracker {
     releaseDefinitionId: number;
     authHandler: IRequestHandler;
     connection: azdev.WebApi;
-    constructor(orgUrl: string, personalAccessToken: string, project: string, releaseDefinitionId: number);
+    environmentsToIgnore: string[];
+    constructor(orgUrl: string, personalAccessToken: string, project: string, releaseDefinitionId: number, environmentsToIgnore: string[]);
+    getEnvironmentNames(): Promise<string[]>;
     getDeployInfos(pullRequestIds: number[]): Promise<pullRequestDeployInfo[]>;
     private getPullRequestInfos;
     private getEnvironments;
