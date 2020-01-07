@@ -8,6 +8,7 @@ Retrieve the deployed environments for an Azure Repos' pull request
   const orgUrl = "https://dev.azure.com/myOrg";
   const project = "myProject";
   const releaseDefinitionId = 42;
+  const environmentsToIgnore = ["sandbox"];
 
   // Read your AZURE_PERSONAL_ACCESS_TOKEN from .env
   require("dotenv").config();
@@ -17,7 +18,7 @@ Retrieve the deployed environments for an Azure Repos' pull request
   }
   let token: string = process.env.AZURE_PERSONAL_ACCESS_TOKEN;
 
-  const tracker = new PullRequestTracker(orgUrl, project, token, releaseDefinitionId);
+  const tracker = new PullRequestTracker(orgUrl, token, project, releaseDefinitionId, environmentsToIgnore);
 
   console.log(await tracker.getDeployInfos([494919]));
   console.log();
